@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 #logoName img {
 	margin-top: 10px;
 }
@@ -15,4 +16,16 @@
 }
 #logoName img {
 	height: 40px;
+}
+.middle{
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+.login{
+	width: 700px;
+	height: 500px;
+	background-color: buttonface;
 }

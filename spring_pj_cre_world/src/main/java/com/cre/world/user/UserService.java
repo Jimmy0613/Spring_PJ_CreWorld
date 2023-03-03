@@ -13,7 +13,11 @@ public class UserService implements UserServiceInterface {
 	@Setter(onMethod_ = @Autowired)
 	private UserMapper mapper;
 
-	public UserVo getUser(String user_id) {
-		return mapper.getUser(user_id);
+	public UserVo getUserByEmail(UserVo user) {
+		UserVo savedUser = mapper.getUserByEmail(user.getEmail());
+		if(savedUser == null) {
+			mapper.addUser(user);
+		}
+		return savedUser;
 	}
 }

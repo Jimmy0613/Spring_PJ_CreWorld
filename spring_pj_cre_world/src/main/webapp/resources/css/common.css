@@ -8,7 +8,9 @@ html, body {
 	height:100%;
 	pointer-events:auto;
 }
-
+button:hover{
+	cursor: pointer;
+}
 body {
 	/*height:100%;*/
 	font-size: 12px;
@@ -30,6 +32,7 @@ span {
 }
 
 a {
+	text-decoration: none;
 	vertical-align: top
 }
 a:hover{

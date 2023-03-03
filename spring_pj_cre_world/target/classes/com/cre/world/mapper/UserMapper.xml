@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cre.world.mapper.UserMapper">
-	<select id="getUser" resultType="com.cre.world.user.UserVo" parameterType="map">
-		SELECT * from users where user_id = #{user_id}
+	<select id="getUserByEmail"
+		resultType="com.cre.world.user.UserVo" parameterType="map">
+		SELECT * from
+		user where email = #{email}
 	</select>
+	<insert id="addUser">
+		INSERT into user (email, pw, nickname, prof_img)
+		values(#{email},#{pw},#{nickname},#{prof_img})
+	</insert>
 </mapper>
