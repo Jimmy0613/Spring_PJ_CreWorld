@@ -1,12 +1,14 @@
 @charset "UTF-8";
-body{
+
+body {
 	display: relative;
 	align-items: center;
-	justify-content:center;
-	width:100%;
+	justify-content: center;
+	width: 100%;
 }
+
 .header {
-	width:100%;
+	width: 100%;
 	display: grid;
 	grid-template-rows: 70px 100px;
 	align-items: center;
@@ -22,22 +24,25 @@ body{
 	justify-content: center;
 }
 
-#logoTime{
+#logoTime {
 	width: 120px;
 	height: 70px;
 	color: rgb(4, 90, 4);
 	font-weight: 900;
 	font-size: 1.5em;
 }
-#logoTime img{
+
+#logoTime img {
 	width: 100px;
 	height: 70px;
 }
+
 .t_menu1 div {
-	margin: 100px;
+	margin: 50px;
 	display: inline;
 }
-.t_menu1 .t_mid{
+
+.t_menu1 .t_mid {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -45,16 +50,18 @@ body{
 	width: 350px;
 	height: 70px;
 }
-.t_menu1 .reserv{
+
+.t_menu1 .reserv {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 400px;
 	height: 70px;
 }
-.t_menu1 div button{
-	margin:0;
-	padding:0;
+
+.t_menu1 div button {
+	margin: 0;
+	padding: 0;
 	font-size: 14px;
 	padding-top: 5px;
 	border: none;
@@ -62,7 +69,6 @@ body{
 	height: 50px;
 	background-color: inherit;
 }
-
 
 .t_menu2 {
 	width: 100%;
@@ -74,7 +80,7 @@ body{
 }
 
 .t_menu2 div {
-	margin: 150px;
+	margin: 80px;
 	display: inline;
 }
 
@@ -89,7 +95,7 @@ body{
 	border: none;
 }
 
-.logoName2 img{
+.logoName2 img {
 	height: 70px;
 }
 
@@ -97,23 +103,32 @@ body{
 	height: 60px;
 }
 
-.loginEtc {
+.t_menu2 .loginEtc {
+	font-size: 1.1em;
+	font-weight: bolder;
 	width: 200px;
 	padding-bottom: 15px;
 }
 
+.t_menu2 .loginEtc img {
+	width: 30px;
+}
+
 .dropdown_menu {
-	width: 100%;
+	margin: auto;
+	width: 800px;
 	position: relative;
 	align-items: center;
 	justify-content: center;
 }
-.dropdown_btns{
+
+.dropdown_btns {
 	display: flex;
-	width:100%;
+	width: 800px;
 	align-items: center;
 	justify-content: center;
 }
+
 .dropdown_btns button {
 	font-size: 16px;
 	position: relative;
@@ -130,36 +145,50 @@ body{
 	color: white;
 }
 
-
 .dropdown_content {
-	width: 100%;
-	background-color:white;
-	height:200px;
+	width: 800px;
+	background-color: white;
+	height: 200px;
 	display: none;
 	min-width: 160px;
 }
 
-.dropdown_content div{
-	display:inline-block;
-	min-width:200px;
+.dropdown_content div {
+	text-align: center;
+	display: inline-block;
+	min-width: 200px;
 }
 
 .dropdown_content a {
-	font-size:14px;
+	font-size: 14px;
 	padding: 10px;
-	padding-left:20px;
 	display: block;
 }
 
 .dropdown_menu:hover .dropdown_content {
 	position: absolute;
+	z-index:2;
 	display: flex;
-	align-items:center;
-	justify-content:center;
+	align-items: center;
+	justify-content: center;
 }
-#beach{
-	margin-top: 10px;
-	display:flex;
-	align-items:center;
-	justify-content:center;
+
+.wrap {
+	margin-top:20px;
+	z-index:1;
+	width: 1200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+#quickReserv {
+	position: absolute;
+	top: 7%;
+	left: 8%;
+	width: 1000px;
+	height: 400px;
+	background-color: white;
+	opacity: 0.7;
 }

@@ -2,7 +2,6 @@
 var obTimeOut;
 var creImage = document.getElementById('creImage');
 var logo = document.createElement('img');
-logo.src = 'resources/img/creLogo.jpg';
 var count = 0;
 function getDateString(now) {
     var year = now.getFullYear();

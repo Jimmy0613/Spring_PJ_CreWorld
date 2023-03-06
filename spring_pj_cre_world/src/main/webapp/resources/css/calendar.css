@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.calendar{
+	text-align: center;
+	margin: 0 auto;
+}
+
+.calendar td{
+	opacity: 1;
+	width: 50px;
+	height: 50px;
+}
+.calendar thead tr:first-child td {
+	font-weight: bold;
+}
+
+.calendar thead tr:last-child td{
+	background-color: gray;
+	color: white;
+}
+
+.pastDay {
+	background-color: lightgray;
+}
+.today{
+	background-color: #FFCA64;
+	cursor: pointer;
+}
+.futureDay{
+	background-color:#FFFFFF;
+	cursor: pointer;
+}
+
+.futureDay.choiceDay .today.choiceDay{
+	background-color:#3E85EF;
+	color: #fff;
+	cursor: pointer;
+}
+#prev, #next{
+	cursor: pointer;
+}

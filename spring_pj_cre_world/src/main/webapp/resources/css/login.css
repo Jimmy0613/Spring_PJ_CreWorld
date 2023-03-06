@@ -19,13 +19,17 @@
 }
 .middle{
 	width: 100%;
-	height: auto;
-	display: flex;
+	height: 500px;
+	display: grid;
 	align-items:center;
 	justify-content: center;
 }
-.login{
-	width: 700px;
-	height: 500px;
-	background-color: buttonface;
+.login_form tr{
+	font-size:1.2em;
+	text-align: center;
+	height: 40px;
+}
+.login_form input{
+	width: 150px;
+	height: 20px;
 }

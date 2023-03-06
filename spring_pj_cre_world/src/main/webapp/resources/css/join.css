@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.join_form tr{
+	height: 30px;
+}
+
+.join_form input{
+	width: 150px;
+	height: 20px;
+}

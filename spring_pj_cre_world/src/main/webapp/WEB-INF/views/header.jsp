@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>				
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/header.js?version=${System.currentTimeMillis()}"></script>
 </head>
@@ -34,10 +36,18 @@
 			<div class="loginEtc">
 				<c:choose>
 					<c:when test="${LOGIN_USER==null}">
-						<a href="/user/login">로그인 / 회원가입</a>
+						<a href="/user/login">로그인</a> / <a href="/user/join">회원가입</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/user/login">로그아웃</a>
+						<img src="${LOGIN_USER.prof_img}">&nbsp;${LOGIN_USER.nickname} 님 &nbsp;&nbsp;
+						<c:choose>
+							<c:when test="${LOGIN_USER.login_type eq 'kakao'}">
+								<a id="btn_kakao_logout">로그아웃</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/user/logout">로그아웃</a>
+							</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
 			</div>

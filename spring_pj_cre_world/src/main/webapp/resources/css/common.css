@@ -8,6 +8,21 @@ html, body {
 	height:100%;
 	pointer-events:auto;
 }
+.middle{
+	display: grid;
+	align-items:center;
+	justify-content:center;
+}
+.login, .join{
+	border: 1px #726be9 solid;
+	width: auto;
+	height: auto;
+	margin: 50px;
+	padding: 50px;
+	display: flex;
+	align-items:center;
+	justify-content:center;
+}
 button:hover{
 	cursor: pointer;
 }

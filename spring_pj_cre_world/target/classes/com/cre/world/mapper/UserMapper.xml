@@ -7,8 +7,8 @@
 		SELECT * from
 		user where email = #{email}
 	</select>
-	<insert id="addUser">
-		INSERT into user (email, pw, nickname, prof_img)
-		values(#{email},#{pw},#{nickname},#{prof_img})
+	<insert id="addUser" parameterType="com.cre.world.user.UserVo">
+		INSERT into user (email, pw, nickname, prof_img, login_type)
+		values(#{email},#{pw},#{nickname},#{prof_img}, #{login_type})
 	</insert>
 </mapper>
