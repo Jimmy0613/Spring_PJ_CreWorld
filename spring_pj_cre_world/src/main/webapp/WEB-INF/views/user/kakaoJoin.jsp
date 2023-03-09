@@ -15,14 +15,15 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/js/join.js?version=${System.currentTimeMillis()}"></script>
+	src="${pageContext.request.contextPath}/resources/js/kakao_join.js?version=${System.currentTimeMillis()}"></script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 	<div class="middle">
 		<div class="join">
-			<form id="form_join" action="/user/join.do" method="post">
+			<form id="form_kakao_join" action="/user/kakaoJoin.do" method="post">
 				<h1 style="font-size: 1.8em;">회원가입</h1>
+				<b>카카오 계정으로 로그인을 시도하셨습니다. 간단한 가입 절차 후 바로 서비스를 이용하실 수 있습니다.</b>
 				<br>
 				<table class="join_form">
 					<tr>
@@ -37,37 +38,24 @@
 							동의합니다.(필수)</td>
 					</tr>
 					<tr>
-						<td style="width: 100px;">* 아이디</td>
-						<td><input id="user_id" type="text" name='user_id' placeholder="아이디 입력" required>
-							<input style="width: 70px; height: 30px;" type="button"
-							id="id_confirm_btn" value="중복 확인"></td>
-						<td id="id_confirm">
-							<!-- 아이디 중복 여부 안내 출력 위치 --> <input type="hidden" id="id_check"
-							value="N">
-						</td>
-					</tr>
-					<tr>
-						<td>* 비밀번호</td>
-						<td><input id="pw" type="password" name='user_pw' required></td>
-					</tr>
-					<tr>
-						<td>* 비밀번호 확인</td>
-						<td><input id="pwCheck" type="password" required></td>
-						<td id="pw_confirm">
-							<!-- 비번 일치 여부 안내 출력 위치 --> <input type="hidden" id="pw_check"
-							value="N">
-						</td>
-					</tr>
-					<tr>
-						<td>* 이름(실명 권장)</td>
-						<td><input id="user_name" type="text" name='user_name' required
+						<td>* 이름 </td>
+						<td><input id="user_name" type="text" name='user_name' value="${KAKAO_LOGIN.user_name}" required
 							maxlength="6"></td>
+						<td>(카카오 계정 닉네임이 실명이 아닐 경우 실명으로 변경을 권장합니다.)</td>
+					</tr>
+					<tr>
+						<td>프로필사진</td>
+						<td><img style="width:110px;" src="${KAKAO_LOGIN.prof_img}"></td>
+						<td>(추후 마이페이지에서 프로필사진을 삭제하거나 변경할 수 있습니다.)</td>
 					</tr>
 					<tr></tr>
 					<tr>
 						<td colspan="3" style="text-align: center;"><input
-							type="hidden" name='login_type' value="normal"><input
-							style="height: 30px;" id="form_join_btn" type="button"
+							type="hidden" name='login_type' value="${KAKAO_LOGIN.login_type}"><input
+							type="hidden" name='user_id' value="${KAKAO_LOGIN.user_id}"><input
+							type="hidden" name='user_pw' value="${KAKAO_LOGIN.user_pw}"><input
+							type="hidden" name='prof_img' value="${KAKAO_LOGIN.prof_img}"><input
+							style="height: 30px;" id="form_kakao_join_btn" type="button"
 							value="회원가입"></td>
 					</tr>
 				</table>

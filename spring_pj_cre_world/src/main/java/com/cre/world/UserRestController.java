@@ -17,10 +17,10 @@ public class UserRestController {
 
 	private UserServiceImpl service;
 
-	@GetMapping("/email_confirm")
-	public boolean email_confirm(@RequestParam("email") String email) {
-		UserVo savedUser = service.getUserByEmail(email);
-		// user db에 이메일이 존재하는지 여부를 확인해 존재하면 true, 아니면 false를 리턴
+	@GetMapping("/id_confirm")
+	public boolean email_confirm(@RequestParam("user_id") String user_id) {
+		UserVo savedUser = service.getUserById(user_id);
+		// user db에 해당 아이디가 존재하는지 여부를 확인해 존재하면 true, 아니면 false를 리턴
 		if (savedUser != null) {
 			return true;
 		} else {
@@ -29,10 +29,10 @@ public class UserRestController {
 	}
 
 	@GetMapping("/pw_confirm")
-	public boolean pw_confirm(@RequestParam("email") String email, @RequestParam("pw") String pw) {
-		UserVo savedUser = service.getUserByEmail(email);
+	public boolean pw_confirm(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String pw) {
+		UserVo savedUser = service.getUserById(user_id);
 		boolean match = false;
-		match = PwEncoder.passwordMatches(pw, savedUser.getPw());
+		match = PwEncoder.passwordMatches(pw, savedUser.getUser_pw());
 		if (match) {
 			return true;
 		} else {

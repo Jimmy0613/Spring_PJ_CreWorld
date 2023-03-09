@@ -14,18 +14,8 @@ public class UserServiceImpl implements UserService {
 	private UserMapper mapper;
 
 	@Override
-	public UserVo kakao_login(UserVo user) {
-		UserVo savedUser = mapper.getUserByEmail(user.getEmail());
-		if (savedUser == null) {
-			user.setLogin_type("kakao");
-			mapper.addUser(user);
-		}
-		return savedUser;
-	}
-
-	@Override
-	public UserVo getUserByEmail(String email) {
-		return mapper.getUserByEmail(email);
+	public UserVo getUserById(String user_id) {
+		return mapper.getUserById(user_id);
 	}
 	
 	@Override

@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>				
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <script
 	src="${pageContext.request.contextPath}/resources/js/header.js?version=${System.currentTimeMillis()}"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/login.js?version=${System.currentTimeMillis()}"></script>
 </head>
 <body>
 	<div class="header">
@@ -34,22 +38,21 @@
 				<a href='/'><img src="/resources/img/logoName.jpg"></a>
 			</div>
 			<div class="loginEtc">
-				<c:choose>
-					<c:when test="${LOGIN_USER==null}">
-						<a href="/user/login">로그인</a> / <a href="/user/join">회원가입</a>
-					</c:when>
-					<c:otherwise>
-						<img src="${LOGIN_USER.prof_img}">&nbsp;${LOGIN_USER.nickname} 님 &nbsp;&nbsp;
-						<c:choose>
-							<c:when test="${LOGIN_USER.login_type eq 'kakao'}">
-								<a id="btn_kakao_logout">로그아웃</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/user/logout">로그아웃</a>
-							</c:otherwise>
-						</c:choose>
-					</c:otherwise>
-				</c:choose>
+				<c:if test="${LOGIN_USER==null}">
+					<a href="/user/login">로그인</a> / <a href="/user/join">회원가입</a>
+				</c:if>
+				<c:if test="${LOGIN_USER!=null}">
+					<img src="${LOGIN_USER.prof_img}">&nbsp;${LOGIN_USER.user_name}
+				님 &nbsp;&nbsp;
+				<c:if test="${LOGIN_USER.login_type eq 'kakao'}">
+						<a
+							href="https://kauth.kakao.com/oauth/logout?client_id=20e2c80133ed378957f5189bbfbdb63b
+&logout_redirect_uri=http://localhost:8080/user/kakaoLogout">로그아웃</a>
+					</c:if>
+					<c:if test="${LOGIN_USER.login_type eq 'normal'}">
+						<a href="/user/logout">로그아웃</a>
+					</c:if>
+				</c:if>
 			</div>
 		</div>
 	</div>

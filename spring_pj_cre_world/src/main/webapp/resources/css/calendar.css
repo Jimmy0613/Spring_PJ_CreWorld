@@ -1,11 +1,13 @@
 @charset "UTF-8";
 .calendar{
+	background-color: white;
 	text-align: center;
 	margin: 0 auto;
 }
-
+.calendar tr{
+	border-bottom: 1px solid gray;
+}
 .calendar td{
-	opacity: 1;
 	width: 50px;
 	height: 50px;
 }
@@ -16,6 +18,7 @@
 .calendar thead tr:last-child td{
 	background-color: gray;
 	color: white;
+	height: 30px;
 }
 
 .pastDay {
@@ -30,7 +33,7 @@
 	cursor: pointer;
 }
 
-.futureDay.choiceDay .today.choiceDay{
+.choiceDay {
 	background-color:#3E85EF;
 	color: #fff;
 	cursor: pointer;

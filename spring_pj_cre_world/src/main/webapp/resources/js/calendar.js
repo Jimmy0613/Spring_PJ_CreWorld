@@ -1,4 +1,4 @@
-window.onload = function(){buildCalendar();}
+window.onload = function () { buildCalendar(); }
 let nowMonth = new Date();
 let today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -36,7 +36,9 @@ function buildCalendar() {
             nowColumn.className = "pastDay";
         } else if (nowDay.getFullYear() === today.getFullYear() && nowDay.getMonth() === today.getMonth() && nowDay.getDate() == today.getDate()) {
             nowColumn.className = "today";
-            nowColumn.onclick = function () { choiceDate(this); }
+            nowColumn.onclick = function () {
+                choiceDate(this);
+            }
         } else {
             nowColumn.className = "futureDay";
             nowColumn.onclick = function () { choiceDate(this); }
@@ -44,10 +46,11 @@ function buildCalendar() {
     }
 }
 function choiceDate(nowColumn) {
-    if (document.getElementsByClassName("choiceDay")[0]) {
+    if (document.getElementsByClassName("choiceDay")[1]) {
+        document.getElementsByClassName("choiceDay")[1].classList.remove("choiceDay");
         document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
     }
-    nowColumn.classList.add("choiceDay");
+    nowColumn.classList.toggle("choiceDay");
 }
 function prev() {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());
@@ -64,4 +67,21 @@ function leftPad(value) {
         return value;
     }
     return value;
+}
+
+function count(type) {
+    const resultElement = document.getElementById('numOfPeople');
+    let number = resultElement.innerText;
+    if (type === 'plus') {
+        if (number < 4) {
+            number = parseInt(number) + 1;
+        } else {
+            return;
+        }
+    } else if (type === 'minus') {
+        if (number > 1) {
+            number = parseInt(number) - 1;
+        }
+    }
+    resultElement.innerText = number;
 }

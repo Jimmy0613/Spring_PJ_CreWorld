@@ -189,6 +189,14 @@ body {
 	left: 8%;
 	width: 1000px;
 	height: 400px;
-	background-color: white;
-	opacity: 0.7;
+	background-color: rgba(0,0,0,0.3);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+#calendar{
+	margin: 5px;
+}
+#reserv{
+	margin: 5px;
+	background-color: #ffd688;
 }

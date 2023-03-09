@@ -4,40 +4,36 @@ $(function () {
             alert('약관에 동의해주세요.');
             return;
         }
-        if ($("#email_check").val() === "N") {
-            alert('이메일 중복 확인을 해주세요.');
+        if ($("#id_check").val() === "N") {
+            alert('아이디 중복 확인을 해주세요.');
             return;
         }
         if ($("#pw_check").val() === "N") {
             alert('비밀번호가 일치하지 않습니다.');
             return;
         }
-        if ($("#nickname").val().length < 2) {
-            alert('별명은 한 글자 이상 입력해주세요.');
+        if ($("#user_name").val().length < 2) {
+            alert('이름은 한 글자 이상 입력해주세요.');
             return;
         }
         $("#form_join").submit();
     })
 })
 $(function () {
-    $("#email_confirm_btn").click(function () {
-        var email = $("#email").val();
-        if (email.indexOf("@") === -1) {
-            alert('이메일 양식을 확인해주세요.(\'@\' 필요)');
-            return;
-        }
-        var uri = encodeURI(`/user/email_confirm?email=${email}`);
+    $("#id_confirm_btn").click(function () {
+        var id = $("#id").val();
+        var uri = encodeURI(`/user/id_confirm?user_id=${id}`);
         $.get(uri, function (data) {
             if (data === false) {
-                $("#email_confirm").text("사용할 수 있는 이메일입니다.");
-                $("#email_confirm").css("color", "blue");
-                $("#email_check").val("Y");
-                $("#email_confirm_btn").css("opacity", "0.6");
-                $("#email_confirm_btn").css("disabled", "true");
+                $("#id_confirm").text("사용할 수 있는 아이디입니다.");
+                $("#id_confirm").css("color", "blue");
+                $("#id_check").val("Y");
+                $("#id_confirm_btn").css("opacity", "0.6");
+                $("#id_confirm_btn").css("disabled", "true");
             } else {
-                $("#email_confirm").text("이미 가입된 이메일입니다.");
-                $("#email_confirm").css("color", "red");
-                $("#email_check").val("N");
+                $("#id_confirm").text("이미 가입된 아이디입니다.");
+                $("#id_confirm").css("color", "red");
+                $("#id_check").val("N");
             }
         })
 
@@ -45,10 +41,10 @@ $(function () {
 })
 
 $(function () {
-    $("#email").change(function () {
-        $("#email_confirm_btn").css("opacity", "1");
-        $("#email_confirm_btn").css("disabled", "false");
-        $("#email_check").val("N");
+    $("#id").change(function () {
+        $("#id_confirm_btn").css("opacity", "1");
+        $("#id_confirm_btn").css("disabled", "false");
+        $("#id_check").val("N");
     })
 })
 $(function () {
