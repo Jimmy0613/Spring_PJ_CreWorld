@@ -167,36 +167,46 @@ body {
 
 .dropdown_menu:hover .dropdown_content {
 	position: absolute;
-	z-index:2;
+	z-index: 2;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.wrap {
-	margin-top:20px;
-	z-index:1;
-	width: 1200px;
+.beach_img {
+	margin-top: 20px;
+	height: auto;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
 }
 
 #quickReserv {
-	position: absolute;
-	top: 7%;
-	left: 8%;
-	width: 1000px;
+	color: black;
+	width: 100%;
 	height: 400px;
-	background-color: rgba(0,0,0,0.3);
+	margin-top: 20px;
 	display: grid;
+	background-color: #eef3dc;
 	grid-template-columns: 1fr 1fr;
 }
-#calendar{
-	margin: 5px;
+.quickReserv{
+	width: 470px;
+	height: 170px;
 }
+.quickReserv td {
+	height: 30px;
+}
+
 #reserv{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	align-items:center;
+	justify-content:center;
+}
+
+#calendar {
 	margin: 5px;
-	background-color: #ffd688;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

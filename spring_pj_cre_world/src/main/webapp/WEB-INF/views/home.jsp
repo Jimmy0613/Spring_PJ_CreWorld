@@ -36,44 +36,23 @@
 				</div>
 			</div>
 		</div>
-		<div class="wrap">
+		<div class="beach_img">
 			<img id="beach"
 				src="${pageContext.request.contextPath}/resources/img/beach_big.jpg">
-			<div id="quickReserv">
-				<div id="calendar">
+		</div>
+		<div id="quickReserv">
+			<div id="reserv" style="font-size: 1.3em;">
+				<%@include file="/WEB-INF/views/quick_reserve.jsp"%>
+			</div>
+			<div id="calendar">
+				<div id="box"
+					style="min-height: 390px; width: 350px; background-color: rgba(255, 255, 255, 0.7);">
 					<%@include file="/WEB-INF/views/calendar.jsp"%>
-				</div>
-				<div id="reserv" style="font-size: 1.3em;">
-					<table class="quickReserv">
-						<thead>
-							<tr>
-								<th>빠른 예약 서비스</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>인원수(최대 4인)</td>
-								<td id="numOfPeople">1</td>
-								<td>명</td>
-								<td><input type="button" onclick="count('plus');" value="추가"></td>
-								<td><input type="button" onclick="count('minus');" id="plus_btn" value="빼기"></td>
-							</tr>
-							<tr>
-								<td>시작일(check-in)</td>
-								<td></td>
-								<td>~</td>
-							</tr>
-							<tr>
-								<td>종료일(check-out)</td>
-								<td></td>
-								<td><input type="button" value="검색"></td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="footer"></div>
+	<div class="footer">
+	</div>
 </body>
 </html>

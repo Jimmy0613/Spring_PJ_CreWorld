@@ -1,18 +1,18 @@
 @charset "UTF-8";
 .calendar{
-	background-color: white;
+	background-color: rgba(255,255,255,0.7);;
 	text-align: center;
 	margin: 0 auto;
+	font-size:13px;
 }
-.calendar tr{
-	border-bottom: 1px solid gray;
-}
+
 .calendar td{
+	font-weight: bolder;
 	width: 50px;
 	height: 50px;
 }
 .calendar thead tr:first-child td {
-	font-weight: bold;
+	font-size: 1.3em;
 }
 
 .calendar thead tr:last-child td{
@@ -20,7 +20,9 @@
 	color: white;
 	height: 30px;
 }
-
+/* .calendar tbody td{
+	border-bottom: #ffedcc 1px solid;
+} */
 .pastDay {
 	background-color: lightgray;
 }
@@ -37,6 +39,17 @@
 	background-color:#3E85EF;
 	color: #fff;
 	cursor: pointer;
+}
+
+.startDay{
+	background-color:pink;
+	color:white;
+	cursor:pointer;
+}
+.endDay{
+	background-color:skyblue;
+	color:white;
+	cursor:pointer;
 }
 #prev, #next{
 	cursor: pointer;

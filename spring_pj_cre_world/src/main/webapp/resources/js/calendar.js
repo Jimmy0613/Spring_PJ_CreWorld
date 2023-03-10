@@ -2,6 +2,8 @@ window.onload = function () { buildCalendar(); }
 let nowMonth = new Date();
 let today = new Date();
 today.setHours(0, 0, 0, 0);
+let startDate;
+let endDate;
 function buildCalendar() {
     let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);
     let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);
@@ -23,7 +25,7 @@ function buildCalendar() {
     for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {
         let nowColumn = nowRow.insertCell();
         nowColumn.innerText = nowDay.getDate();
-
+        nowColumn.style.border ="1px solid #ffedcc"
         if (nowDay.getDay() === 0) {
             nowColumn.style.color = "#DC143C";
         }
@@ -46,12 +48,38 @@ function buildCalendar() {
     }
 }
 function choiceDate(nowColumn) {
-    if (document.getElementsByClassName("choiceDay")[1]) {
-        document.getElementsByClassName("choiceDay")[1].classList.remove("choiceDay");
-        document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+    if (document.getElementById("startDate").value != "") {
+        if (document.getElementById("endDate").value != "") {
+            return;
+        }
+        endDate = nowMonth.getFullYear() + '-' + leftPad(nowMonth.getMonth() + 1) + '-' + leftPad(nowColumn.innerText);
+        if (startDate === endDate) {
+            return;
+        }
+        if (new Date(document.getElementById("startDate").value).getTime() > new Date(endDate).getTime()) {
+            endDate = document.getElementById("startDate").value;
+            startDate = nowMonth.getFullYear() + '-' + leftPad(nowMonth.getMonth() + 1) + '-' + leftPad(nowColumn.innerText);
+            if (document.getElementsByClassName("startDay")[0]) {
+                document.getElementsByClassName("startDay")[0].classList.toggle("endDay");
+                document.getElementsByClassName("startDay")[0].classList.remove("startDay");
+            }
+            nowColumn.classList.toggle("startDay");
+        } else {
+            nowColumn.classList.toggle("endDay");
+        }
+    } else {
+        nowColumn.classList.toggle("startDay");
+        startDate = nowMonth.getFullYear() + '-' + leftPad(nowMonth.getMonth() + 1) + '-' + leftPad(nowColumn.innerText);
     }
-    nowColumn.classList.toggle("choiceDay");
+    if (startDate != null) {
+        document.getElementById("startDate").value = startDate;
+    }
+    if (endDate != null) {
+        document.getElementById("endDate").value = endDate;
+    }
+
 }
+
 function prev() {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());
     buildCalendar();
@@ -70,8 +98,8 @@ function leftPad(value) {
 }
 
 function count(type) {
-    const resultElement = document.getElementById('numOfPeople');
-    let number = resultElement.innerText;
+    const resultElement = document.getElementById('num');
+    let number = resultElement.value;
     if (type === 'plus') {
         if (number < 4) {
             number = parseInt(number) + 1;
@@ -83,5 +111,26 @@ function count(type) {
             number = parseInt(number) - 1;
         }
     }
-    resultElement.innerText = number;
+    resultElement.value = number;
+}
+
+function checkNum() {
+    let num = document.getElementById('num').value;
+    if (num > 4 || num < 1) {
+        document.getElementById("warn").innerText = '1명 이상 4명 이하만 가능합니다.';
+        document.getElementById('num').value = 1;
+    }
+}
+
+function reset() {
+    if (document.getElementsByClassName("startDay")[0]) {
+        document.getElementsByClassName("startDay")[0].classList.remove("startDay");
+    }
+    if (document.getElementsByClassName("endDay")[0]) {
+        document.getElementsByClassName("endDay")[0].classList.remove("endDay");
+    }
+    document.getElementById("startDate").value = "";
+    document.getElementById("endDate").value = "";
+    startDate = null;
+    endDate = null;
 }
