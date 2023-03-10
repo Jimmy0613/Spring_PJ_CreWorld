@@ -26,12 +26,8 @@ public class UserController {
 	private UserService service;
 	private KakaoAPI kakao;
 
-	@GetMapping({ "/login" })
-	public void user_login() {
-	}
-
-	@GetMapping("/join")
-	public void join() {
+	@GetMapping({ "/login", "/join", "kakaoJoin" })
+	public void getView() {
 	}
 
 	@PostMapping("/join.do")
@@ -44,13 +40,6 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 
-	@PostMapping("/kakaoJoin.do")
-	public String kakaoJoin_do(HttpServletRequest request, UserVo input) {
-		service.addUser(input);
-		log.info("카카오 가입 성공");
-		SessionUtils.setObject(request, "LOGIN_USER", input);
-		return "redirect:/";
-	}
 	@GetMapping("/login.do")
 	public String loginNormal(HttpServletRequest request, UserVo input) {
 		UserVo savedUser = service.getUserById(input.getUser_id());
@@ -59,20 +48,40 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		SessionUtils.removeObject(request, "LOGIN_USER");
+		return "redirect:/";
+	}
+
+	@PostMapping("/kakaoJoin.do")
+	public String kakaoJoin_do(HttpServletRequest request, UserVo input) {
+		service.addUser(input);
+		log.info("카카오 가입 성공");
+		SessionUtils.setObject(request, "LOGIN_USER", input);
+		return "redirect:/";
+	}
+
 	@GetMapping("/kakaoLogin")
-	public String login(HttpServletRequest request, @RequestParam("code") String code) {
+	public String kakaoLogin() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("https://kauth.kakao.com/oauth/authorize");
+		sb.append("?client_id=" + KakaoAPI.REST_API_KEY);
+		sb.append("&redirect_uri=http://localhost:8080/user/kakaoLogin.do");
+		sb.append("&response_type=code");
+		String url = sb.toString();
+		return "redirect:" + url;
+	}
+
+	@GetMapping("/kakaoLogin.do")
+	public String kakaoLogin_do(HttpServletRequest request, @RequestParam("code") String code) {
 		String access_Token = kakao.getAccessToken(code);
-		System.out.println("controller access_token : " + access_Token);
 		SessionUtils.setObject(request, "access_Token", access_Token);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-		log.info("========kakao_id : " + (String) userInfo.get("kakao_id"));
-		log.info("========nickname : " + (String) userInfo.get("nickname"));
-		log.info("========prof_img : " + (String) userInfo.get("profile_image"));
-		log.info("========thumb_img : " + (String) userInfo.get("thumbnail_image"));
 		UserVo user = new UserVo();
 		user.setUser_id((String) userInfo.get("id"));
 		user.setUser_name((String) userInfo.get("nickname"));
-		//카카오 유저의 경우 access_Token을 암호화해서 비밀번호로 db에 삽입하여 id만으로 로그인이 되는 것을 방지
+		// 카카오 유저의 경우 access_Token을 암호화해서 비밀번호로 db에 삽입하여 id만으로 로그인이 되는 것을 방지
 		user.setUser_pw(PwEncoder.passwordEncode(access_Token));
 		user.setProf_img((String) userInfo.get("profile_image"));
 		user.setLogin_type("kakao");
@@ -86,21 +95,20 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/kakaoJoin")
-	public void kakaoJoin() {
-	}
-
 	@GetMapping("/kakaoLogout")
+	public String kakaoLogout() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("https://kauth.kakao.com/oauth/logout");
+		sb.append("?client_id=" + KakaoAPI.REST_API_KEY);
+		sb.append("&logout_redirect_uri=http://localhost:8080/user/kakaoLogout.do");
+		String url = sb.toString();
+		return "redirect:" + url;
+	}
+	@GetMapping("/kakaoLogout.do")
 	public String kakaoLogout(HttpServletRequest request) {
-		kakao.kakaoLogout((String) SessionUtils.getObject(request, "access_Token"));
 		SessionUtils.removeObject(request, "access_Token");
 		SessionUtils.removeObject(request, "LOGIN_USER");
 		return "redirect:/";
 	}
 
-	@GetMapping("/logout")
-	public String user_logout(HttpServletRequest request) {
-		SessionUtils.removeObject(request, "LOGIN_USER");
-		return "redirect:/";
-	}
 }

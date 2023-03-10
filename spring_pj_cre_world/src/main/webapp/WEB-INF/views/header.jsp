@@ -46,8 +46,7 @@
 				님 &nbsp;&nbsp;
 				<c:if test="${LOGIN_USER.login_type eq 'kakao'}">
 						<a
-							href="https://kauth.kakao.com/oauth/logout?client_id=20e2c80133ed378957f5189bbfbdb63b
-&logout_redirect_uri=http://localhost:8080/user/kakaoLogout">로그아웃</a>
+							href="/user/kakaoLogout">로그아웃</a>
 					</c:if>
 					<c:if test="${LOGIN_USER.login_type eq 'normal'}">
 						<a href="/user/logout">로그아웃</a>

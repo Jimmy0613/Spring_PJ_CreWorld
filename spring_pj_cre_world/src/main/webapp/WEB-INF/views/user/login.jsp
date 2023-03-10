@@ -42,7 +42,7 @@
 					<tr>
 						<td></td>
 						<td><a
-							href="https://kauth.kakao.com/oauth/authorize?client_id=20e2c80133ed378957f5189bbfbdb63b&redirect_uri=http://localhost:8080/user/kakaoLogin&response_type=code"><img
+							href="/user/kakaoLogin"><img
 								src="/resources/img/kakao_login_medium_narrow.png"></a></td>
 					</tr>
 				</table>
